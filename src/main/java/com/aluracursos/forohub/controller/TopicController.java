@@ -59,4 +59,11 @@ public class TopicController {
         TopicDetailDTO topicDetail = new TopicDetailDTO(this.service.updateTopicById(id, updateData));
         return ResponseEntity.ok(topicDetail);
     }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity<Void> deleteTopic(@PathVariable Long id){
+        this.service.deleteTopicById(id);
+        return ResponseEntity.noContent().build();
+    }
 }

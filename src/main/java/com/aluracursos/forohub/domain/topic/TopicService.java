@@ -37,4 +37,11 @@ public class TopicService {
         topic.updateTopic(updateData);
         return topic;
     }
+
+    public void deleteTopicById(Long id) {
+        if (!this.repository.existsById(id)) {
+            throw new ResourceNotFoundException("Tópico no encontrado con ID: " + id);
+        }
+        this.repository.deleteById(id);
+    }
 }

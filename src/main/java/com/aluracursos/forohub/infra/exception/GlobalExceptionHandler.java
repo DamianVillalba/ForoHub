@@ -6,11 +6,13 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.List;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity manageError400(MethodArgumentNotValidException ex) {
+    public ResponseEntity<List<DataErrorValidation>> manageError400(MethodArgumentNotValidException ex) {
         var errors = ex.getFieldErrors();
         return ResponseEntity.badRequest().body(errors.stream().map(DataErrorValidation::new).toList());
     }
