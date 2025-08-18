@@ -21,7 +21,7 @@ public class Topic {
     private String title;
     private String message;
     private LocalDateTime creationDate;
-    private boolean status;
+    private Boolean status;
     private String author; //decido no extender hacia una entidad author ya que extiende lo requerido para el challenge
     private String course; //decido no extender hacia una entidad course ya que extiende lo requerido para el challenge
 
