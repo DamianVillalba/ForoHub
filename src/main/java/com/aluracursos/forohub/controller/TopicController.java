@@ -2,9 +2,7 @@ package com.aluracursos.forohub.controller;
 
 import com.aluracursos.forohub.domain.topic.Topic;
 import com.aluracursos.forohub.domain.topic.TopicService;
-import com.aluracursos.forohub.domain.topic.dto.TopicCreateDTO;
-import com.aluracursos.forohub.domain.topic.dto.TopicDTO;
-import com.aluracursos.forohub.domain.topic.dto.TopicResponseDTO;
+import com.aluracursos.forohub.domain.topic.dto.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/topicos")
+@RequestMapping("/v1/topicos")
 public class TopicController {
 
     @Autowired
@@ -26,7 +24,7 @@ public class TopicController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<TopicResponseDTO> createTopic(@RequestBody @Valid TopicCreateDTO creationData, UriComponentsBuilder uriComponentsBuilder) {
+    public ResponseEntity<TopicDetailDTO> createTopic(@RequestBody @Valid TopicCreateDTO creationData, UriComponentsBuilder uriComponentsBuilder) {
         //creo el topico nuevo y lo persisto
         Topic newTopic = this.service.createTopic(creationData);
 
@@ -37,14 +35,20 @@ public class TopicController {
                         newTopic.getId()).toUri();
 
         //creo la respuesta para el body con el DTO correspondiente para no exponer la entidad
-        TopicResponseDTO response = new TopicResponseDTO(newTopic);
+        TopicDetailDTO response = new TopicDetailDTO(newTopic);
 
         return ResponseEntity.created(url).body(response);
     }
 
     @GetMapping
-    public ResponseEntity<Page<TopicDTO>> listTopics(@PageableDefault(size = 10, sort = "creationDate") Pageable pageable){
+    public ResponseEntity<Page<TopicDetailDTO>> listTopics(@PageableDefault(size = 10, sort = "creationDate") Pageable pageable){
         return ResponseEntity.ok(this.service.findByStatusTrue(pageable)
-                .map(TopicDTO::new));
+                .map(TopicDetailDTO::new));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<TopicDetailDTO> detailTopic(@PathVariable Long id){
+        Topic topic = this.service.getReferenceById(id);
+        return ResponseEntity.ok(new TopicDetailDTO(topic));
     }
 }

@@ -6,6 +6,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class TopicService {
 
@@ -21,5 +23,9 @@ public class TopicService {
 
     public Page<Topic> findByStatusTrue(Pageable pageable) {
         return this.repository.findByStatusTrue(pageable);
+    }
+
+    public Topic getReferenceById(Long id) {
+        return this.repository.getReferenceById(id);
     }
 }
