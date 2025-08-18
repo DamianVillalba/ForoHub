@@ -42,13 +42,13 @@ public class TopicController {
 
     @GetMapping
     public ResponseEntity<Page<TopicDetailDTO>> listTopics(@PageableDefault(size = 10, sort = "creationDate") Pageable pageable){
-        return ResponseEntity.ok(this.service.findByStatusTrue(pageable)
-                .map(TopicDetailDTO::new));
+        Page<TopicDetailDTO> page = this.service.findByStatusTrue(pageable)
+                .map(TopicDetailDTO::new);
+        return ResponseEntity.ok(page);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<TopicDetailDTO> detailTopic(@PathVariable Long id){
-        Topic topic = this.service.getReferenceById(id);
-        return ResponseEntity.ok(new TopicDetailDTO(topic));
+        return ResponseEntity.ok(this.service.getTopicById(id));
     }
 }

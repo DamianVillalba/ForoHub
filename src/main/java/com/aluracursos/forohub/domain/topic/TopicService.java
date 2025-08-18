@@ -1,6 +1,8 @@
 package com.aluracursos.forohub.domain.topic;
 
 import com.aluracursos.forohub.domain.topic.dto.TopicCreateDTO;
+import com.aluracursos.forohub.domain.topic.dto.TopicDetailDTO;
+import com.aluracursos.forohub.infra.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,7 +27,9 @@ public class TopicService {
         return this.repository.findByStatusTrue(pageable);
     }
 
-    public Topic getReferenceById(Long id) {
-        return this.repository.getReferenceById(id);
+    public TopicDetailDTO getTopicById(Long id) {
+        Topic topic = this.repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Tópico no encontrado con ID: " + id));
+        return new TopicDetailDTO(topic);
     }
 }
