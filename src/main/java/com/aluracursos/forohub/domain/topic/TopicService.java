@@ -2,13 +2,13 @@ package com.aluracursos.forohub.domain.topic;
 
 import com.aluracursos.forohub.domain.topic.dto.TopicCreateDTO;
 import com.aluracursos.forohub.domain.topic.dto.TopicDetailDTO;
+import com.aluracursos.forohub.domain.topic.dto.TopicUpdateDTO;
 import com.aluracursos.forohub.infra.exception.ResourceNotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class TopicService {
@@ -27,9 +27,14 @@ public class TopicService {
         return this.repository.findByStatusTrue(pageable);
     }
 
-    public TopicDetailDTO getTopicById(Long id) {
-        Topic topic = this.repository.findById(id)
+    public Topic getTopicById(Long id) {
+        return this.repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Tópico no encontrado con ID: " + id));
-        return new TopicDetailDTO(topic);
+    }
+
+    public Topic updateTopicById(Long id, @Valid TopicUpdateDTO updateData) {
+        Topic topic = this.getTopicById(id);
+        topic.updateTopic(updateData);
+        return topic;
     }
 }

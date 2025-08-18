@@ -1,6 +1,7 @@
 package com.aluracursos.forohub.domain.topic;
 
 import com.aluracursos.forohub.domain.topic.dto.TopicCreateDTO;
+import com.aluracursos.forohub.domain.topic.dto.TopicUpdateDTO;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.*;
@@ -32,5 +33,13 @@ public class Topic {
         this.status = true;
         this.author = creationData.author();
         this.course = creationData.course();
+    }
+
+    public void updateTopic(@Valid TopicUpdateDTO updateData) {
+        //Como los datos son obligatorios, no hay necesidad de corroborar Null.
+        this.title = updateData.title();
+        this.message = updateData.message();
+        this.author = updateData.author();
+        this.course = updateData.course();
     }
 }

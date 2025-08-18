@@ -49,6 +49,14 @@ public class TopicController {
 
     @GetMapping("/{id}")
     public ResponseEntity<TopicDetailDTO> detailTopic(@PathVariable Long id){
-        return ResponseEntity.ok(this.service.getTopicById(id));
+        TopicDetailDTO topicDetail = new TopicDetailDTO(this.service.getTopicById(id));
+        return ResponseEntity.ok(topicDetail);
+    }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<TopicDetailDTO> updateTopic(@PathVariable Long id, @RequestBody @Valid TopicUpdateDTO updateData){
+        TopicDetailDTO topicDetail = new TopicDetailDTO(this.service.updateTopicById(id, updateData));
+        return ResponseEntity.ok(topicDetail);
     }
 }
