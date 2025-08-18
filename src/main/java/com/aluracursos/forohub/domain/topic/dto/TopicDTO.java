@@ -12,7 +12,6 @@ public record TopicDTO(
         //formateo la fecha para que sea acorde a nuestro estandar
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
         LocalDateTime creationDate,
-        Boolean state,
         String author,
         String course
 ) {
@@ -22,7 +21,6 @@ public record TopicDTO(
                 topic.getTitle(),
                 topic.getMessage(),
                 topic.getCreationDate(),
-                topic.getStatus(),
                 topic.getAuthor(),
                 topic.getCourse()
         );

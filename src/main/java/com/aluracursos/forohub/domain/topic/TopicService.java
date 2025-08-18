@@ -19,7 +19,7 @@ public class TopicService {
         return this.repository.save(newTopic);
     }
 
-    public Page<Topic> findAll(Pageable pageable) {
-        return this.repository.findAll(pageable);
+    public Page<Topic> findByStatusTrue(Pageable pageable) {
+        return this.repository.findByStatusTrue(pageable);
     }
 }
