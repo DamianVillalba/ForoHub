@@ -3,6 +3,7 @@ package com.aluracursos.forohub.controller;
 import com.aluracursos.forohub.domain.topic.Topic;
 import com.aluracursos.forohub.domain.topic.TopicService;
 import com.aluracursos.forohub.domain.topic.dto.*;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("${api.base.path}/topicos")
+@SecurityRequirement(name = "bearer-key")
 public class TopicController {
 
     @Autowired
