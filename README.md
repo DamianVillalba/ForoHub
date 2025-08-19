@@ -2,7 +2,7 @@
 
 ## 📝 Descripción del Proyecto
 
-ForoHub es una **API RESTful** desarrollada como parte del **Challenge Backend de Alura Latam**. El proyecto es un foro de discusión donde los usuarios pueden interactuar, crear tópicos y gestionar sus publicaciones.
+ForoHub es una **API RESTful** desarrollada como parte del **Challenge Backend de Alura Latam**.
 
 La API se ha construido siguiendo las **mejores prácticas** de la industria, incluyendo una arquitectura en capas, seguridad robusta y una documentación clara con **Swagger UI**.
 
@@ -75,3 +75,4 @@ La API está documentada con **Swagger UI**. Puedes acceder a la documentación 
 ## 💻 Autor
 
 **Damian Villalba** - Desarrollado para el challenge ForoHub de Alura + ONE.
+
