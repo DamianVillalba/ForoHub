@@ -44,7 +44,8 @@ Para ejecutar la aplicación, es necesario configurar las siguientes variables d
 
 | Variable | Descripción | Ejemplo |
 | :--- | :--- | :--- |
-| `DB_URL` | URL de conexión a la base de datos. | `jdbc:postgresql://localhost:5432/forohub` |
+| `DB_HOST` | Host de la base de datos. | `localhost` |
+| `DB_NAME` | Nombre de la base de datos. | `forohub` |
 | `DB_USERNAME` | Nombre de usuario de la base de datos. | `postgres` |
 | `DB_PASSWORD` | Contraseña del usuario de la base de datos. | `123456` |
 | `JWT_SECRET` | Clave secreta para la firma del token JWT. | `miclavesecretaparaeljwt` |
@@ -75,4 +76,5 @@ La API está documentada con **Swagger UI**. Puedes acceder a la documentación 
 ## 💻 Autor
 
 **Damian Villalba** - Desarrollado para el challenge ForoHub de Alura + ONE.
+
 
