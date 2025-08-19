@@ -16,7 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/v1/topicos")
+@RequestMapping("${api.base.path}/topicos")
 public class TopicController {
 
     @Autowired

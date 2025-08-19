@@ -1,0 +1,2 @@
+--migracion creada para generar un usuario de prueba reproducible para el test integral de la API
+INSERT INTO users (login, password) VALUES ('user@example.com', '$2a$10$j6do/ZmWF7ZgwI8MlNOKOewsyWgX9csiImyCW3Fe2gmi8SIVaFZNi');

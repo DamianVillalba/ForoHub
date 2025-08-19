@@ -20,7 +20,7 @@ public class TokenService {
     @Value("${api.security.token.secret}")
     private String secret;
 
-    @Value("${api.jwt.expiration.hours}")
+    @Value("${api.security.token.expiration}")
     private int expirationInHours;
 
     public String generateToken(User user) {
