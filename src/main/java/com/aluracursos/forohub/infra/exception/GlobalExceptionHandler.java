@@ -29,11 +29,6 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponseDTO("El cuerpo de la solicitud JSON está mal formado."));
     }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponseDTO> handleGenericException(Exception ex) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponseDTO("Ocurrió un error inesperado en el servidor."));
-    }
-
     public record DataErrorValidation(String field, String message) {
         public DataErrorValidation(FieldError error){
             this(error.getField(), error.getDefaultMessage());
